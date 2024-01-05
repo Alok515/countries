@@ -36,7 +36,7 @@ const currencieKeys = ref(Object.keys(props.data[0].currencies))
       </div>
       <div class="p-8">
         <h1 class="text-4xl mb-6">{{ data[0].name.common }}</h1>
-        <div class="flex gap-12 flex-wrap xl:gap-30">
+        <div class="flex gap-12 max-md:flex-wrap">
           <div class="flex flex-col gap-4">
             <p>
               Native Name:
