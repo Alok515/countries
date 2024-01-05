@@ -11,15 +11,20 @@ const regions = ['Asia', 'Africa', 'Antarctic', 'Europe', 'Americas', 'Oceania']
 const searchValue = ref('')
 const regionFilter = ref('')
 
+//loades data on mount
 onMounted(async () => {
   try {
     const rawData = await fetch('https://restcountries.com/v3.1/all')
     const parsedData = await rawData.json()
+
+    //sorting the data in acending order
     parsedData.sort((item1, item2) => {
       const name1 = item1.name.common
       const name2 = item2.name.common
       return name1.localeCompare(name2)
     })
+
+    //storing data in the ref apiData
     apiData.value = parsedData
   } catch (error) {
     console.log('failed to get the Data')
@@ -28,6 +33,7 @@ onMounted(async () => {
   }
 })
 
+//watcher witha delay of 500ms which has regionFilter as its dependency
 watchDebounced(
   regionFilter,
   async () => {
@@ -40,21 +46,27 @@ watchDebounced(
     }
   },
   {
+    //wating for 500ms
     debounce: 500
   }
 )
 
+//watcher witha delay of 500ms which has searchValue as its dependency
 watchDebounced(
   searchValue,
   async () => {
     try {
+      //if the length of search value is grather than 1 then the api with name will be called or else api with all data will be called
       if (searchValue.value.length > 0) {
         const rawData = await fetch(`https://restcountries.com/v3.1/name/${searchValue.value}`)
         const parsedData = await rawData.json()
         apiData.value = parsedData
-      } else {
+      } 
+      //if length is === 0
+      else {
         const rawData = await fetch(`https://restcountries.com/v3.1/all`)
         const parsedData = await rawData.json()
+        //sorting the Data in ascending order
         parsedData.sort((item1, item2) => {
           const name1 = item1.name.common.toLowerCase()
           const name2 = item2.name.common.toLowerCase()
@@ -68,6 +80,7 @@ watchDebounced(
     }
   },
   {
+    //wating for 100ms
     debounce: 1000
   }
 )

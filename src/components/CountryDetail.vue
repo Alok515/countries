@@ -9,6 +9,7 @@ const props = defineProps({
   }
 })
 
+//geting keys for dynamicly accessing properties
 const borders = ref(props.data[0].borders)
 const languages = ref(Object.keys(props.data[0].languages))
 const keyIndex = languages.value.length > 1 ? 1 : 0

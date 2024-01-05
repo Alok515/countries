@@ -9,6 +9,7 @@ const isLoading = ref(true)
 const route = useRoute()
 const countryCode = route.params.code
 
+//loades the data on mount
 onMounted(async () => {
   const rawData = await fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`)
   const parsedData = await rawData.json()
