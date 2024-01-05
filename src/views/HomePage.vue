@@ -40,8 +40,7 @@ watchDebounced(
     }
   },
   {
-    debounce: 500,
-    maxWait: 1000
+    debounce: 500
   }
 )
 
@@ -69,8 +68,7 @@ watchDebounced(
     }
   },
   {
-    debounce: 1000,
-    maxWait: 3000
+    debounce: 1000
   }
 )
 </script>

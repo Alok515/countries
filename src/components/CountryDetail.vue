@@ -35,12 +35,12 @@ const currencieKeys = ref(Object.keys(props.data[0].currencies))
       </div>
       <div class="p-8">
         <h1 class="text-4xl mb-6">{{ data[0].name.common }}</h1>
-        <div class="flex gap-12 flex-wrap xl:gap-36">
+        <div class="flex gap-12 flex-wrap xl:gap-30">
           <div class="flex flex-col gap-4">
             <p>
               Native Name:
               <span class="text-gray-500 font-normal">{{
-                data[0].name.nativeName[nativeLangIndex].common
+                data[0].name?.nativeName[nativeLangIndex]?.common ? data[0].name?.nativeName[nativeLangIndex]?.common : data[0].name.common 
               }}</span>
             </p>
             <p>
@@ -59,32 +59,37 @@ const currencieKeys = ref(Object.keys(props.data[0].currencies))
               }}</span>
             </p>
           </div>
-          <div class="flex flex-col gap-3">
-            <p>
-              Currencies:
-              <span
-                class="text-gray-500 font-normal flex gap-2"
+          <div class="flex flex-col gap-4">
+            <div class="flex items-center gap-4 flex-wrap">
+              <p class="mr-2">Currencies:</p>
+              
+              <div class="flex gap-2 flex-col">
+                <span
+                class="text-gray-500 font-normal"
                 v-for="currencieKey of currencieKeys"
                 :key="currencieKey"
                 >{{ data[0].currencies[currencieKey].symbol }}-{{
                   data[0].currencies[currencieKey].name
-                }}</span
-              >
-            </p>
+                }}</span>
+              </div>
 
-            <p>
-              Languages:
-              <span
+            </div>
+
+            <div class="flex items-center gap-4 flex-wrap">
+              <p class="mr-2">Languages:</p>
+              <div class="flex gap-2 flex-col">
+                <span
                 v-for="lang of languages"
                 :key="lang"
-                class="text-gray-500 font-normal flex gap-2"
+                class="text-gray-500 font-normal"
               >
                 {{ data[0].languages[lang] }}
               </span>
-            </p>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="mt-8">
+        <div class="mt-8 flex flex-wrap items-center">
           <p class="font-bold">Borders:</p>
           <div v-if="borders?.length" class="mt-2">
             <p class="flex gap-2 flex-wrap">
@@ -97,7 +102,7 @@ const currencieKeys = ref(Object.keys(props.data[0].currencies))
               </span>
             </p>
           </div>
-          <p v-else>No Borders</p>
+          <p v-else class="ml-2 text-gray-400">No Borders</p>
         </div>
       </div>
     </div>
