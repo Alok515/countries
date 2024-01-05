@@ -61,7 +61,7 @@ watchDebounced(
         const rawData = await fetch(`https://restcountries.com/v3.1/name/${searchValue.value}`)
         const parsedData = await rawData.json()
         apiData.value = parsedData
-      } 
+      }
       //if length is === 0
       else {
         const rawData = await fetch(`https://restcountries.com/v3.1/all`)

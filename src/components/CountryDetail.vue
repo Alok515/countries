@@ -41,7 +41,9 @@ const currencieKeys = ref(Object.keys(props.data[0].currencies))
             <p>
               Native Name:
               <span class="text-gray-500 font-normal">{{
-                data[0].name?.nativeName[nativeLangIndex]?.common ? data[0].name?.nativeName[nativeLangIndex]?.common : data[0].name.common 
+                data[0].name?.nativeName[nativeLangIndex]?.common
+                  ? data[0].name?.nativeName[nativeLangIndex]?.common
+                  : data[0].name.common
               }}</span>
             </p>
             <p>
@@ -63,29 +65,25 @@ const currencieKeys = ref(Object.keys(props.data[0].currencies))
           <div class="flex flex-col gap-4">
             <div class="flex items-center gap-4 flex-wrap">
               <p class="mr-2">Currencies:</p>
-              
+
               <div class="flex gap-2 flex-col">
                 <span
-                class="text-gray-500 font-normal"
-                v-for="currencieKey of currencieKeys"
-                :key="currencieKey"
-                >{{ data[0].currencies[currencieKey].symbol }}-{{
-                  data[0].currencies[currencieKey].name
-                }}</span>
+                  class="text-gray-500 font-normal"
+                  v-for="currencieKey of currencieKeys"
+                  :key="currencieKey"
+                  >{{ data[0].currencies[currencieKey].symbol }}-{{
+                    data[0].currencies[currencieKey].name
+                  }}</span
+                >
               </div>
-
             </div>
 
             <div class="flex items-center gap-4 flex-wrap">
               <p class="mr-2">Languages:</p>
               <div class="flex gap-2 flex-col">
-                <span
-                v-for="lang of languages"
-                :key="lang"
-                class="text-gray-500 font-normal"
-              >
-                {{ data[0].languages[lang] }}
-              </span>
+                <span v-for="lang of languages" :key="lang" class="text-gray-500 font-normal">
+                  {{ data[0].languages[lang] }}
+                </span>
               </div>
             </div>
           </div>
